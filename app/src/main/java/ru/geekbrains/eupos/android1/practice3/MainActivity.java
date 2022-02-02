@@ -2,6 +2,7 @@ package ru.geekbrains.eupos.android1.practice3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private double valueTwo;
     /**хранение знака операции*/
     private String op;
-    /**Р¤РѕСЂРјР°С‚ РІС‹РІРѕРґР° РґР°РЅРЅС‹С… */
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#.#######");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,5 +90,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numberField.append(button.getText().toString());
                 break;
         }
+    }
+
+    private void inputNumb(){
+        valueOne = Double.parseDouble(numberField.getText().toString());
+        operationField.setText(op);
+        resultField.setText(decimalFormat.format(valueOne));
+        numberField.setText("");
+    }
+
+
+    private void compute() {
+        try {
+            valueTwo = Double.parseDouble(numberField.getText().toString());
+            switch (op) {
+                case "-":
+                    valueOne = valueOne - valueTwo;
+                    break;
+                case "+":
+                    valueOne = valueOne + valueTwo;
+                    break;
+                case "*":
+                    valueOne = valueOne * valueTwo;
+                    break;
+                case "/":
+                    valueOne = valueOne / valueTwo;
+                    break;
+                default:
+                    valueOne = Double.parseDouble(numberField.getText().toString());
+                    break;
+            }
+        } catch (Exception ignored) {}
     }
 }
