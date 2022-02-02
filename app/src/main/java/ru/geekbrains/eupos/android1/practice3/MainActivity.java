@@ -2,7 +2,7 @@ package ru.geekbrains.eupos.android1.practice3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.icu.text.DecimalFormat;
+import java.text.DecimalFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnComma;
     private Button btnBspace;
     private Button btnClear;
-    /**Первичный ввод данных */
-    private double valueOne;
-    /**Второе число*/
-    private double valueTwo;
-    /**хранение знака операции*/
-    private String op;
 
+    /**Ввод первого числа */
+    private double valueOne;
+    /**Для второго числа */
+    private double valueTwo;
+    /**Хранение знака операции*/
+    private String op;
     private DecimalFormat decimalFormat = new DecimalFormat("#.#######");
 
     @Override
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         this.setTitle("Калькулятор");
-        // РїРѕР»СѓС‡Р°РµРј РІСЃРµ РїРѕР»СЏ РїРѕ id РёР· activity_main.xml
         resultField =(TextView) findViewById(R.id.resultField);
         numberField = (EditText) findViewById(R.id.numberField);
         operationField = (TextView) findViewById(R.id.operationField);
@@ -70,6 +69,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSubtrac= (Button) findViewById(R.id.btnSubtrac);
         btnBspace = (Button) findViewById(R.id.btnBspace);
         btnPercent = (Button) findViewById(R.id.btnPercent);
+
+
+        btnNull.setOnClickListener(this);
+        btnOne.setOnClickListener(this);
+        btnTwo.setOnClickListener(this);
+        btnThree.setOnClickListener(this);
+        btnFour.setOnClickListener(this);
+        btnFive.setOnClickListener(this);
+        btnSix.setOnClickListener(this);
+        btnSeven.setOnClickListener(this);
+        btnEigh.setOnClickListener(this);
+        btnNine.setOnClickListener(this);
+        btnAdd.setOnClickListener(this);
+        btnComma.setOnClickListener(this);
+        btnDiv.setOnClickListener(this);
+        btnMulti.setOnClickListener(this);
+        btnResult.setOnClickListener(this);
+        btnSubtrac.setOnClickListener(this);
+        btnClear.setOnClickListener(this);
+        btnBspace.setOnClickListener(this);
+        btnPercent.setOnClickListener(this);
     }
 
     @Override
@@ -89,6 +109,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Button button = findViewById(view.getId());
                 numberField.append(button.getText().toString());
                 break;
+            case R.id.btnAdd:
+                op = "+";
+                inputNumb();
+                break;
+            case R.id.btnSubtrac:
+                op = "-";
+                inputNumb();
+                break;
+            case R.id.btnMulti:
+                op = "*";
+                inputNumb();
+                break;
+            case R.id.btnDiv:
+                op = "/";
+                inputNumb();
+                break;
+            case R.id.btnResult:
+                compute();
+                resultField.setText(decimalFormat.format(valueOne));
+                numberField.setText("");
+                operationField.setText("");
+                break;
+            case R.id.btnClear:
+                resultField.setText("");
+                numberField.setText("");
+                operationField.setText("");
+                valueOne = Double.NaN;
+                valueTwo = Double.NaN;
+                break;
+            case R.id.btnBspace:
+                if(numberField.getText().length()>0)
+                    numberField.setText(numberField.getText().subSequence(0,numberField.getText().length()-1));
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + view.getId());
         }
     }
 
