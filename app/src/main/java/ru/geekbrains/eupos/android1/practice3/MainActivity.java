@@ -87,5 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Button button = findViewById(view.getId());
                 numberField.append(button.getText().toString());
                 break;
+        }
     }
 }
