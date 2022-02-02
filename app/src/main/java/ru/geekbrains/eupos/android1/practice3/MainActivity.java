@@ -3,11 +3,12 @@ package ru.geekbrains.eupos.android1.practice3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView resultField, operationField;
     private  EditText numberField;
@@ -30,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
     private Button btnComma;
     private Button btnBspace;
     private Button btnClear;
+    /**Первичный ввод данных */
+    private double valueOne;
+    /**Второе число*/
+    private double valueTwo;
+    /**хранение знака операции*/
+    private String op;
+    /**Р¤РѕСЂРјР°С‚ РІС‹РІРѕРґР° РґР°РЅРЅС‹С… */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,5 +68,10 @@ public class MainActivity extends AppCompatActivity {
         btnSubtrac= (Button) findViewById(R.id.btnSubtrac);
         btnBspace = (Button) findViewById(R.id.btnBspace);
         btnPercent = (Button) findViewById(R.id.btnPercent);
+    }
+
+    @Override
+    public void onClick(View view) {
+        
     }
 }
