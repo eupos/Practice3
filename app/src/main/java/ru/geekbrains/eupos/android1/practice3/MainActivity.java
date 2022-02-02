@@ -72,6 +72,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        
+        switch (view.getId()) {
+            case R.id.btnNull:
+            case R.id.btnOne:
+            case R.id.btnTwo:
+            case R.id.btnThree:
+            case R.id.btnFour:
+            case R.id.btnFive:
+            case R.id.btnSix:
+            case R.id.btnSeven:
+            case R.id.btnEigh:
+            case R.id.btnNine:
+            case R.id.btnComma:
+                Button button = findViewById(view.getId());
+                numberField.append(button.getText().toString());
+                break;
     }
 }
