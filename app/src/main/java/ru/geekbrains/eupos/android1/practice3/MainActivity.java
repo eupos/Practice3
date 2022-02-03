@@ -45,32 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        initView ();
+        initLister ();
         this.setTitle("Калькулятор");
-        resultField =(TextView) findViewById(R.id.resultField);
-        numberField = (EditText) findViewById(R.id.numberField);
-        operationField = (TextView) findViewById(R.id.operationField);
-        btnNull = (Button) findViewById(R.id.btnNull);
-        btnOne = (Button) findViewById(R.id.btnOne);
-        btnTwo = (Button) findViewById(R.id.btnTwo);
-        btnThree = (Button) findViewById(R.id.btnThree);
-        btnFour = (Button) findViewById(R.id.btnFour);
-        btnFive = (Button) findViewById(R.id.btnFive);
-        btnSix = (Button) findViewById(R.id.btnSix);
-        btnSeven = (Button) findViewById(R.id.btnSeven);
-        btnEigh = (Button) findViewById(R.id.btnEigh);
-        btnNine = (Button) findViewById(R.id.btnNine);
-        btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnComma = (Button) findViewById(R.id.btnComma);
-        btnDiv = (Button) findViewById(R.id.btnDiv);
-        btnMulti = (Button) findViewById(R.id.btnMulti);
-        btnClear = (Button) findViewById(R.id.btnClear);
-        btnResult = (Button) findViewById(R.id.btnResult);
-        btnSubtrac= (Button) findViewById(R.id.btnSubtrac);
-        btnBspace = (Button) findViewById(R.id.btnBspace);
-        btnPercent = (Button) findViewById(R.id.btnPercent);
+     }
 
-
+    private void initLister() {
         btnNull.setOnClickListener(this);
         btnOne.setOnClickListener(this);
         btnTwo.setOnClickListener(this);
@@ -91,6 +71,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnBspace.setOnClickListener(this);
         btnPercent.setOnClickListener(this);
     }
+
+    private void initView() {
+        resultField = findViewById(R.id.resultField);
+        numberField = findViewById(R.id.numberField);
+        operationField =  findViewById(R.id.operationField);
+        btnNull = findViewById(R.id.btnNull);
+        btnOne = findViewById(R.id.btnOne);
+        btnTwo = findViewById(R.id.btnTwo);
+        btnThree = findViewById(R.id.btnThree);
+        btnFour = findViewById(R.id.btnFour);
+        btnFive = findViewById(R.id.btnFive);
+        btnSix = findViewById(R.id.btnSix);
+        btnSeven = findViewById(R.id.btnSeven);
+        btnEigh = findViewById(R.id.btnEigh);
+        btnNine = findViewById(R.id.btnNine);
+        btnAdd = findViewById(R.id.btnAdd);
+        btnComma = findViewById(R.id.btnComma);
+        btnDiv = findViewById(R.id.btnDiv);
+        btnMulti = findViewById(R.id.btnMulti);
+        btnClear = findViewById(R.id.btnClear);
+        btnResult = findViewById(R.id.btnResult);
+        btnSubtrac = findViewById(R.id.btnSubtrac);
+        btnBspace = findViewById(R.id.btnBspace);
+        btnPercent = findViewById(R.id.btnPercent);
+    }
+
 
     @Override
     public void onClick(View view) {
