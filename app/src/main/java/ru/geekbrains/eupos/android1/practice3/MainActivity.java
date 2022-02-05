@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private Compute compute = new Compute();
+
     private TextView resultField, operationField;
     private  EditText numberField;
     private Button btnNull;
@@ -33,12 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnBspace;
     private Button btnClear;
 
-    /**Ввод первого числа */
-    private double valueOne;
-    /**Для второго числа */
-    private double valueTwo;
-    /**Хранение знака операции*/
-    private String op;
     private DecimalFormat decimalFormat = new DecimalFormat("#.#######");
 
     @Override
@@ -100,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
             case R.id.btnNull:
             case R.id.btnOne:
@@ -116,24 +113,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 numberField.append(button.getText().toString());
                 break;
             case R.id.btnAdd:
-                op = "+";
+                compute.setOp("+");
                 inputNumb();
                 break;
             case R.id.btnSubtrac:
-                op = "-";
+                compute.setOp("-");
                 inputNumb();
                 break;
             case R.id.btnMulti:
-                op = "*";
+                compute.setOp("*");
                 inputNumb();
                 break;
             case R.id.btnDiv:
-                op = "/";
+                compute.setOp("/");
                 inputNumb();
                 break;
             case R.id.btnResult:
-                compute();
-                resultField.setText(decimalFormat.format(valueOne));
+                compute.calculation(Double.parseDouble(numberField.getText().toString()));
+                resultField.setText(decimalFormat.format(compute.getValueOne()));
                 numberField.setText("");
                 operationField.setText("");
                 break;
@@ -141,8 +138,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 resultField.setText("");
                 numberField.setText("");
                 operationField.setText("");
-                valueOne = Double.NaN;
-                valueTwo = Double.NaN;
+                compute.setValueOne(Double.NaN);
+                compute.setValueTwo(Double.NaN);
                 break;
             case R.id.btnBspace:
                 if(numberField.getText().length()>0)
@@ -154,33 +151,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void inputNumb(){
-        valueOne = Double.parseDouble(numberField.getText().toString());
-        operationField.setText(op);
-        resultField.setText(decimalFormat.format(valueOne));
+        compute.setValueOne(Double.parseDouble(numberField.getText().toString())); ;
+        operationField.setText(compute.getOp());
+        resultField.setText(decimalFormat.format(compute.getValueOne()));
         numberField.setText("");
-    }
-
-
-    private void compute() {
-        try {
-            valueTwo = Double.parseDouble(numberField.getText().toString());
-            switch (op) {
-                case "-":
-                    valueOne = valueOne - valueTwo;
-                    break;
-                case "+":
-                    valueOne = valueOne + valueTwo;
-                    break;
-                case "*":
-                    valueOne = valueOne * valueTwo;
-                    break;
-                case "/":
-                    valueOne = valueOne / valueTwo;
-                    break;
-                default:
-                    valueOne = Double.parseDouble(numberField.getText().toString());
-                    break;
-            }
-        } catch (Exception ignored) {}
     }
 }
