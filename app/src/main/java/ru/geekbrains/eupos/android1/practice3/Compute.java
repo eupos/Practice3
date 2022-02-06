@@ -1,5 +1,9 @@
 package ru.geekbrains.eupos.android1.practice3;
 
+import android.os.Parcel;
+
+import androidx.annotation.NonNull;
+
 public class Compute {
     /**Ввод первого числа */
     private double valueOne;
@@ -9,6 +13,8 @@ public class Compute {
     private  String op;
     /**ввод значений для метода*/
     private String nField;
+
+    Compute () {}
 
     public void  setOp (String op) {
         this.op = op;
@@ -52,5 +58,17 @@ public class Compute {
 
             }
         } catch (Exception ignored) {}
+    }
+
+    @NonNull
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public void writeToParcel(Parcel parcel, double i) {
+        parcel.writeDouble(valueOne);
+        parcel.writeDouble(valueTwo);
+        parcel.writeString(op);
     }
 }

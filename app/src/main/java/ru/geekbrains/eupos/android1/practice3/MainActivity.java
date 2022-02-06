@@ -1,13 +1,15 @@
 package ru.geekbrains.eupos.android1.practice3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.DecimalFormat;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnBspace;
     private Button btnClear;
 
-    private DecimalFormat decimalFormat = new DecimalFormat("#.#######");
+   private DecimalFormat decimalFormat = new DecimalFormat("#.#######");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initLister ();
         this.setTitle("Калькулятор");
      }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("compute", (Parcelable) compute);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        compute = savedInstanceState.getParcelable("compute");
+        resultField.setText(String.format("id", compute.getValueOne()));
+        operationField.setText(String.format("id", compute.getOp()));
+        numberField.setText(String.format("id", compute.getValueTwo()));
+    }
 
     private void initLister() {
         btnNull.setOnClickListener(this);
